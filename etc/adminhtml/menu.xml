@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Magegang, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magegang_LogoConfig::system_logo" title="Logo" translate="title" module="Magento_Backend"
+             sortOrder="30" parent="Magento_Backend::content" resource="Magento_Backend::design"/>
+        <add id="Magegang_LogoConfig::system_logo_schedule" title="Schedule" translate="title"
+             module="Magegang_LogoConfig" sortOrder="10" parent="Magegang_LogoConfig::system_logo"
+             action="logoconfig/logo/index" resource="Magegang_LogoConfig::schedule_logo"/>
+    </menu>
+</config>

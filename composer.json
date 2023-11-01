@@ -1,0 +1,22 @@
+{
+    "name": "magegang/module-logo-config",
+    "description": "Schedule a logo for each of your ecommerce store's yearly events",
+    "type": "magento2-module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Magegang",
+            "email": "hi@magegang.tech"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Magegang\\LogoConfig\\": ""
+        }
+    }
+}

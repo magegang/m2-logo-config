@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Magegang, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="logo_config" resource="default" engine="innodb" comment="logo_config Table">
+        <column xsi:type="smallint" name="logo_config_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Logo Config Id"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Store ID"/>
+        <column name="name" nullable="true" xsi:type="varchar" comment="name" length="255"/>
+        <column name="src" nullable="true" xsi:type="varchar" comment="Src" length="255"/>
+        <column name="start_at" nullable="true" xsi:type="date" comment="Start At"/>
+        <column name="end_at" nullable="true" xsi:type="date" comment="End At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="logo_config_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="LOGO_CONFIG_STORE_ID_STORE_STORE_ID" table="logo_config"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="LOGO_CONFIG_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+</schema>

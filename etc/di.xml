@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Magegang, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magegang\LogoConfig\Api\LogoConfigRepositoryInterface" type="Magegang\LogoConfig\Model\LogoConfigRepository"/>
+    <preference for="Magegang\LogoConfig\Api\Data\LogoInterface" type="Magegang\LogoConfig\Model\Logo"/>
+    <preference for="Magegang\LogoConfig\Api\Data\LogoConfigSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Magento\Theme\Block\Html\Header\Logo" type="Magegang\LogoConfig\Block\Html\Header\Logo"/>
+    <virtualType name="Magegang\LogoConfig\Model\ResourceModel\LogoConfig\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">logo_config</argument>
+            <argument name="resourceModel" xsi:type="string">
+                Magegang\LogoConfig\Model\ResourceModel\Logo\Collection
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="logoconfig_logo_listing_data_source" xsi:type="string">
+                    Magegang\LogoConfig\Model\ResourceModel\LogoConfig\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magegang\LogoConfig\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">schedule/tmp/logo</argument>
+            <argument name="basePath" xsi:type="string">schedule/logo</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

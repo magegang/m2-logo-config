@@ -1,0 +1,117 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Magegang, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">logoconfig_logo_listing.logoconfig_logo_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>logoconfig_logo_columns</spinner>
+        <deps>
+            <dep>logoconfig_logo_listing.logoconfig_logo_listing_data_source</dep>
+        </deps>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add New Logo</label>
+            </button>
+        </buttons>
+    </settings>
+    <dataSource name="logoconfig_logo_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">logo_config_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Magegang_LogoConfig::schedule_logo</aclResource>
+        <dataProvider name="logoconfig_logo_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>logo_config_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="logoconfig_logo_columns">
+        <settings>
+            <editorConfig>
+                <param name="selectProvider" xsi:type="string">logoconfig_logo_listing.logoconfig_logo_listing.logoconfig_logo_columns.ids</param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="indexField" xsi:type="string">logo_config_id</param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">logoconfig_logo_listing.logoconfig_logo_listing.logoconfig_logo_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>logo_config_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="logo_config_id">
+            <settings>
+                <filter>text</filter>
+                <sorting>asc</sorting>
+                <label translate="true">Id</label>
+            </settings>
+        </column>
+        <column name="store_id" class="Magento\Store\Ui\Component\Listing\Column\Store">
+            <settings>
+                <label translate="true">Store View</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="src"
+                component="Magento_Ui/js/grid/columns/thumbnail"
+                class="Magegang\LogoConfig\Ui\Component\Listing\Column\Preview">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Preview</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="start_at">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Start At</label>
+            </settings>
+        </column>
+        <column name="end_at">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">End At</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Magegang\LogoConfig\Ui\Component\Listing\Column\LogoAction">
+            <settings>
+                <indexField>logo_config_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>
