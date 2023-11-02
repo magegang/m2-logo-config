@@ -15,6 +15,10 @@ git clone https://github.com/magegang/m2-logo-config LogoConfig
 bin/magento se:up
 bin/magento mo:en Magegang_LogoConfig
 bin/magento ca:cl
+
+# or install the composer package
+
+composer require magegang/module-logo-config
 ```
 
 ## How to schedule a new logo
