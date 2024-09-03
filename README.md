@@ -1,7 +1,7 @@
 # Module for Magento 2
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/magegang/module-logo-config.svg?style=flat-square)](https://packagist.org/packages/magegang/module-logo-config)
-[![License: MIT](https://img.shields.io/github/license/ronangr1/m2-logo-config.svg?style=flat-square)](./LICENSE)
+[![License: MIT](https://img.shields.io/github/license/magegang/m2-logo-config.svg?style=flat-square)](./LICENSE)
 [![Packagist](https://img.shields.io/packagist/dt/magegang/module-logo-config.svg?style=flat-square)](https://packagist.org/packages/magegang/module-logo-config/stats)
 [![Packagist](https://img.shields.io/packagist/dm/magegang/module-logo-config.svg?style=flat-square)](https://packagist.org/packages/magegang/module-logo-config/stats)
 
