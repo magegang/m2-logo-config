@@ -3,6 +3,7 @@
  * Copyright © Magegang All rights reserved.
  * See COPYING.txt for license details.
  */
+
 declare(strict_types=1);
 
 namespace Magegang\LogoConfig\Controller\Adminhtml\Logo;
@@ -20,19 +21,15 @@ use Magento\Framework\View\Result\PageFactory;
 class Edit extends MainController implements HttpGetActionInterface
 {
     public function __construct(
-        protected PageFactory      $resultPageFactory,
-        protected RequestInterface $request,
-        protected Logo             $model,
-        protected RedirectFactory  $redirectFactory,
+        private readonly PageFactory $resultPageFactory,
+        private readonly RequestInterface $request,
+        private readonly Logo $model,
+        private readonly RedirectFactory  $redirectFactory,
         Context $context
-    )
-    {
+    ) {
         parent::__construct($context);
     }
 
-    /**
-     * @return \Magento\Framework\View\Result\Page|\Magento\Backend\Model\View\Result\Redirect
-     */
     public function execute(): Page|Redirect
     {
         $model = $this->model;

@@ -3,6 +3,7 @@
  * Copyright © Magegang All rights reserved.
  * See COPYING.txt for license details.
  */
+
 declare(strict_types=1);
 
 namespace Magegang\LogoConfig\Controller\Adminhtml\Logo;
@@ -10,32 +11,23 @@ namespace Magegang\LogoConfig\Controller\Adminhtml\Logo;
 use Magegang\LogoConfig\Api\LogoConfigRepositoryInterface;
 use Magegang\LogoConfig\Model\ImageUploader;
 use Magegang\LogoConfig\Model\Logo;
+use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Backend\Model\View\Result\RedirectFactory;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\App\RequestInterface;
-use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Message\Manager;
 
 class Save implements HttpPostActionInterface
 {
-    /**
-     * @param \Magento\Framework\App\RequestInterface $request
-     * @param \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
-     * @param \Magegang\LogoConfig\Api\LogoConfigRepositoryInterface $logoConfigRepository
-     * @param \Magegang\LogoConfig\Model\Logo $model
-     * @param \Magento\Framework\Message\Manager $messageManager
-     * @param \Magento\Backend\Model\View\Result\RedirectFactory $redirectFactory
-     * @param \Magegang\LogoConfig\Model\ImageUploader $imageUploader
-     */
     public function __construct(
-        protected RequestInterface $request,
-        protected DataPersistorInterface $dataPersistor,
-        protected LogoConfigRepositoryInterface $logoConfigRepository,
-        protected Logo $model,
-        protected Manager $messageManager,
-        protected RedirectFactory $redirectFactory,
-        protected ImageUploader $imageUploader
+        private readonly RequestInterface $request,
+        private readonly DataPersistorInterface $dataPersistor,
+        private readonly LogoConfigRepositoryInterface $logoConfigRepository,
+        private readonly Logo $model,
+        private readonly Manager $messageManager,
+        private readonly RedirectFactory $redirectFactory,
+        private readonly ImageUploader $imageUploader
     ) {
     }
 
@@ -45,7 +37,6 @@ class Save implements HttpPostActionInterface
     public function execute()
     {
         $resultRedirect = $this->redirectFactory->create();
-
         $params = $this->request->getPostValue();
         if ($params) {
             $id = (int)$this->request->getParam('logo_config_id');
@@ -76,8 +67,6 @@ class Save implements HttpPostActionInterface
                 }
 
                 return $resultRedirect->setPath('*/*/');
-            } catch (LocalizedException $e) {
-                $this->messageManager->addErrorMessage($e->getMessage());
             } catch (\Exception $e) {
                 $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving.'));
             }

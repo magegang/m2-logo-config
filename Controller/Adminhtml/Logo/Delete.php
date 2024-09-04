@@ -3,6 +3,7 @@
  * Copyright © Magegang All rights reserved.
  * See COPYING.txt for license details.
  */
+
 declare(strict_types=1);
 
 namespace Magegang\LogoConfig\Controller\Adminhtml\Logo;
@@ -10,20 +11,20 @@ namespace Magegang\LogoConfig\Controller\Adminhtml\Logo;
 use Magegang\LogoConfig\Model\LogoConfigRepository;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Backend\Model\View\Result\RedirectFactory;
 
 class Delete extends Action
 {
     public function __construct(
-        protected RedirectFactory $redirectFactory,
-        protected LogoConfigRepository $logoConfigRepository,
-        protected Context $context
-    )
-    {
+        private readonly RedirectFactory $redirectFactory,
+        private readonly LogoConfigRepository $logoConfigRepository,
+        Context $context
+    ) {
         parent::__construct($context);
     }
 
-    public function execute()
+    public function execute(): Redirect
     {
         $resultRedirect = $this->redirectFactory->create();
 

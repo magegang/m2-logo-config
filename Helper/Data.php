@@ -3,6 +3,7 @@
  * Copyright © Magegang All rights reserved.
  * See COPYING.txt for license details.
  */
+
 declare(strict_types=1);
 
 namespace Magegang\LogoConfig\Helper;
@@ -15,14 +16,9 @@ use Magento\Store\Model\StoreManagerInterface;
 
 class Data extends AbstractHelper
 {
-    /**
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Magegang\LogoConfig\Model\ImageUploader $imageUploader
-     * @param \Magento\Framework\App\Helper\Context $context
-     */
     public function __construct(
-        protected StoreManagerInterface $storeManager,
-        protected ImageUploader $imageUploader,
+        private readonly StoreManagerInterface $storeManager,
+        private readonly ImageUploader $imageUploader,
         Context $context
     )
     {
@@ -30,8 +26,6 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param string $filename
-     * @return string
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function getLogoSrc(string $filename): string
@@ -49,9 +43,6 @@ class Data extends AbstractHelper
         );
     }
 
-    /**
-     * @return string
-     */
     public function getBasePath(): string
     {
         return $this->imageUploader->getBasePath();

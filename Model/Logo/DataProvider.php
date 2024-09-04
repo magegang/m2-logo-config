@@ -3,6 +3,7 @@
  * Copyright © Magegang All rights reserved.
  * See COPYING.txt for license details.
  */
+
 declare(strict_types=1);
 
 namespace Magegang\LogoConfig\Model\Logo;
@@ -15,30 +16,18 @@ class DataProvider extends AbstractDataProvider
 {
     protected array $loadedData = [];
 
-    /**
-     * @param \Magegang\LogoConfig\Helper\Data $helper
-     * @param string $name
-     * @param string $primaryFieldName
-     * @param string $requestFieldName
-     * @param \Magegang\LogoConfig\Model\ResourceModel\Logo\CollectionFactory $collectionFactory
-     * @param array $meta
-     * @param array $data
-     */
     public function __construct(
-        protected Data $helper,
+        private readonly Data $helper,
         string $name,
         string $primaryFieldName,
         string $requestFieldName,
-        protected CollectionFactory $collectionFactory,
-        array $meta = [],
-        array $data = []
+        protected readonly CollectionFactory $collectionFactory,
     ) {
         $this->collection = $collectionFactory->create();
-        parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
+        parent::__construct($name, $primaryFieldName, $requestFieldName);
     }
 
     /**
-     * @return array
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     public function getData(): array
@@ -62,8 +51,6 @@ class DataProvider extends AbstractDataProvider
     }
 
     /**
-     * @param array $data
-     * @return void
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
     private function setImageUploaderData(array &$data): void

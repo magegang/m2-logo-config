@@ -3,6 +3,7 @@
  * Copyright © Magegang All rights reserved.
  * See COPYING.txt for license details.
  */
+
 declare(strict_types=1);
 
 namespace Magegang\LogoConfig\Model\ResourceModel\Logo;
@@ -13,15 +14,8 @@ use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
 class Collection extends AbstractCollection
 {
-
-    /**
-     * @var string
-     */
     protected $_idFieldName = 'logo_config_id';
 
-    /**
-     * @return void
-     */
     protected function _construct(): void
     {
         $this->_init(

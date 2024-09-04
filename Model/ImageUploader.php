@@ -3,6 +3,7 @@
  * Copyright © Magegang All rights reserved.
  * See COPYING.txt for license details.
  */
+
 declare(strict_types=1);
 
 namespace Magegang\LogoConfig\Model;
@@ -19,24 +20,8 @@ use Psr\Log\LoggerInterface;
 
 class ImageUploader
 {
-    /**
-     * @var \Magento\Framework\Filesystem\Directory\WriteInterface
-     */
     private Filesystem\Directory\WriteInterface $mediaDirectory;
 
-    /**
-     * ImageUploader constructor.
-     * @param \Magento\MediaStorage\Helper\File\Storage\Database $coreFileStorageDatabase
-     * @param \Magento\Framework\Filesystem $filesystem
-     * @param \Magento\MediaStorage\Model\File\UploaderFactory $uploaderFactory
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Psr\Log\LoggerInterface $logger
-     * @param string $baseTmpPath
-     * @param string $basePath
-     * @param array $allowedExtensions
-     * @param array $allowedMimeTypes
-     * @throws \Magento\Framework\Exception\FileSystemException
-     */
     public function __construct(
         protected Database $coreFileStorageDatabase,
         protected Filesystem $filesystem,
@@ -51,12 +36,7 @@ class ImageUploader
         $this->mediaDirectory = $filesystem->getDirectoryWrite(DirectoryList::MEDIA);
     }
 
-    /**
-     * @param $imageName
-     * @return mixed
-     * @throws LocalizedException
-     */
-    public function moveFileFromTmp($imageName): mixed
+    public function moveFileFromTmp(string $imageName): string
     {
         $baseTmpPath = $this->baseTmpPath;
         $basePath = $this->basePath;
@@ -79,14 +59,7 @@ class ImageUploader
         return $imageName;
     }
 
-    /**
-     * @param $fileId
-     * @return array|bool
-     * @throws LocalizedException
-     * @throws NoSuchEntityException
-     * @throws \Exception
-     */
-    public function saveFileToTmpDir($fileId): array|bool
+    public function saveFileToTmpDir(string $fileId): array|bool
     {
         $baseTmpPath = $this->baseTmpPath;
         $uploader = $this->uploaderFactory->create(['fileId' => $fileId]);
@@ -124,19 +97,11 @@ class ImageUploader
         return $result;
     }
 
-    /**
-     * @return string
-     */
     public function getBasePath(): string
     {
         return $this->basePath;
     }
 
-    /**
-     * @param string|null $path
-     * @param string|null $imageName
-     * @return string
-     */
     public function getFilePath(string|null $path, string|null $imageName): string
     {
         $path = $path !== null ? rtrim($path, '/') : '';

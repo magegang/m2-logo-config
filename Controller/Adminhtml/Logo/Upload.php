@@ -3,6 +3,7 @@
  * Copyright © Magegang All rights reserved.
  * See COPYING.txt for license details.
  */
+
 declare(strict_types=1);
 
 namespace Magegang\LogoConfig\Controller\Adminhtml\Logo;
@@ -11,16 +12,13 @@ use Magegang\LogoConfig\Model\ImageUploader;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Action\HttpPostActionInterface;
+use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Controller\ResultFactory;
 
 class Upload extends Action implements HttpPostActionInterface
 {
-    /**
-     * @param \Magegang\LogoConfig\Model\ImageUploader $imageUploader
-     * @param \Magento\Backend\App\Action\Context $context
-     */
     public function __construct(
-        protected ImageUploader $imageUploader,
+        private readonly ImageUploader $imageUploader,
         Context $context
     ) {
         parent::__construct($context);
@@ -31,7 +29,7 @@ class Upload extends Action implements HttpPostActionInterface
         return $this->_authorization->isAllowed('Magegang_LogoConfig::schedule_logo');
     }
 
-    public function execute()
+    public function execute(): Json
     {
         $imageId = $this->_request->getParam('param_name', 'src');
         try {

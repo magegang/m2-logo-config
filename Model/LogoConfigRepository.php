@@ -3,6 +3,7 @@
  * Copyright © Magegang All rights reserved.
  * See COPYING.txt for license details.
  */
+
 declare(strict_types=1);
 
 namespace Magegang\LogoConfig\Model;
@@ -21,14 +22,6 @@ use Magento\Framework\Exception\NoSuchEntityException;
 
 class LogoConfigRepository implements LogoConfigRepositoryInterface
 {
-    /**
-     * @param \Magegang\LogoConfig\Model\ResourceModel\Logo $resource
-     * @param \Magegang\LogoConfig\Api\Data\LogoInterface $model
-     * @param \Magegang\LogoConfig\Model\LogoFactory $modelFactory
-     * @param \Magegang\LogoConfig\Model\ResourceModel\Logo\CollectionFactory $logoCollectionFactory
-     * @param \Magegang\LogoConfig\Api\Data\LogoConfigSearchResultsInterfaceFactory $searchResultsFactory
-     * @param \Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface $collectionProcessor
-     */
     public function __construct(
         protected ResourceLogo $resource,
         protected LogoInterface $model,
@@ -39,11 +32,6 @@ class LogoConfigRepository implements LogoConfigRepositoryInterface
     ) {
     }
 
-    /**
-     * @param \Magegang\LogoConfig\Api\Data\LogoInterface $logo
-     * @return \Magegang\LogoConfig\Api\Data\LogoInterface
-     * @throws \Magento\Framework\Exception\CouldNotSaveException
-     */
     public function save(LogoInterface $logo): LogoInterface
     {
         try {
@@ -57,11 +45,6 @@ class LogoConfigRepository implements LogoConfigRepositoryInterface
         return $logo;
     }
 
-    /**
-     * @param int $logoId
-     * @return \Magegang\LogoConfig\Api\Data\LogoInterface
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
-     */
     public function get(int $logoId): LogoInterface
     {
         $model = $this->modelFactory->create();
@@ -72,10 +55,6 @@ class LogoConfigRepository implements LogoConfigRepositoryInterface
         return $model;
     }
 
-    /**
-     * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
-     * @return \Magento\Framework\Api\SearchResults
-     */
     public function getList(
         SearchCriteriaInterface $searchCriteria
     ): SearchResults
@@ -99,8 +78,6 @@ class LogoConfigRepository implements LogoConfigRepositoryInterface
     }
 
     /**
-     * @param \Magegang\LogoConfig\Api\Data\LogoInterface $logo
-     * @return bool
      * @throws \Magento\Framework\Exception\CouldNotDeleteException
      */
     public function delete(LogoInterface $logo): bool
@@ -119,12 +96,10 @@ class LogoConfigRepository implements LogoConfigRepositoryInterface
     }
 
     /**
-     * @param $logoId
-     * @return bool
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws \Magento\Framework\Exception\CouldNotDeleteException
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function deleteById($logoId): bool
+    public function deleteById(int $logoId): bool
     {
         return $this->delete($this->get($logoId));
     }

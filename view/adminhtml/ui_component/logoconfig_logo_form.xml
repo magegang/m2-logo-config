@@ -32,11 +32,9 @@
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
                 <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+                <item name="submit_url" path="*/*/save" xsi:type="url" />
             </item>
         </argument>
-        <settings>
-            <submitUrl path="*/*/save"/>
-        </settings>
         <dataProvider name="logoconfig_form_data_source" class="Magegang\LogoConfig\Model\Logo\DataProvider">
             <settings>
                 <requestFieldName>logo_config_id</requestFieldName>

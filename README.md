@@ -40,8 +40,6 @@ bin/magento setup:upgrade
 * Go to `Content > Logo > Schedule`
 * Add a logo
 
-Note: a preference for `Magento\Theme\Block\Html\Header\Logo` is defined to implement the `IdentityInterface` pattern. So you won't need to clear the cache for your updated data to be taken into effect.
-
 ## Support
 
 Raise a new [request](https://github.com/magegang/m2-logo-config/issues) to the issue tracker.
